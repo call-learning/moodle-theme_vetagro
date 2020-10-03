@@ -2,26 +2,31 @@
     font-family: 'Poppins';
     src: url([[font:theme|Poppins-Regular.eot]]);
     src: url([[font:theme|Poppins-Regular.eot]]) format('embedded-opentype'),
-    url([[font:theme|Poppins-Regular.woff2]]) format('woff2'), url([[font:theme|Poppins-Regular.woff]]) format('woff'),
-    url([[font:theme|Poppins-Regular.ttf]]) format('truetype'),;
+    url([[font:theme|Poppins-Regular.woff2]]) format('woff2'),
+    url([[font:theme|Poppins-Regular.woff]]) format('woff'),
+    url([[font:theme|Poppins-Regular.ttf]]) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Poppins';
     src: url([[font:theme|Poppins-SemiBold.eot]]);
     src: url([[font:theme|Poppins-SemiBold.eot]]) format('embedded-opentype'),
-    url([[font:theme|Poppins-SemiBold.woff2]]) format('woff2'), url([[font:theme|Poppins-Regular.woff]]) format('woff'),
-    url([[font:theme|Poppins-SemiBold.ttf]]) format('truetype'),;
-    font-weight: 600;
+    url([[font:theme|Poppins-SemiBold.woff2]]) format('woff2'),
+    url([[font:theme|Poppins-Regular.woff]]) format('woff'),
+    url([[font:theme|Poppins-SemiBold.ttf]]) format('truetype');
+    font-weight: bold;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Poppins';
     src: url([[font:theme|Poppins-Bold.eot]]);
     src: url([[font:theme|Poppins-Bold.eot]]) format('embedded-opentype'),
-    url([[font:theme|Poppins-Bold.woff2]]) format('woff2'), url([[font:theme|Poppins-Regular.woff]]) format('woff'),
-    url([[font:theme|Poppins-Bold.ttf]]) format('truetype'),;
+    url([[font:theme|Poppins-Bold.woff2]]) format('woff2'),
+    url([[font:theme|Poppins-Regular.woff]]) format('woff'),
+    url([[font:theme|Poppins-Bold.ttf]]) format('truetype');
     font-weight: 700;
     font-style: normal;
 }
@@ -30,16 +35,19 @@
     font-family: 'OpenSans';
     src: url([[font:theme|OpenSans-Regular.eot]]);
     src: url([[font:theme|OpenSans-Regular.eot]]) format('embedded-opentype'),
-    url([[font:theme|OpenSans-Regular.woff2]]) format('woff2'), url([[font:theme|OpenSans-Regular.woff]]) format('woff'),
-    url([[font:theme|OpenSans-Regular.ttf]]) format('truetype'),;
+    url([[font:theme|OpenSans-Regular.woff2]]) format('woff2'),
+    url([[font:theme|OpenSans-Regular.woff]]) format('woff'),
+    url([[font:theme|OpenSans-Regular.ttf]]) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'OpenSans';
     src: url([[font:theme|OpenSans-Bold.eot]]);
     src: url([[font:theme|OpenSans-Bold.eot]]) format('embedded-opentype'),
-    url([[font:theme|OpenSans-Bold.woff2]]) format('woff2'), url([[font:theme|OpenSans-Bold.woff]]) format('woff'),
+    url([[font:theme|OpenSans-Bold.woff2]]) format('woff2'),
+    url([[font:theme|OpenSans-Bold.woff]]) format('woff'),
     url([[font:theme|OpenSans-Bold.ttf]]) format('truetype'),;
     font-weight: bold;
     font-style: normal;

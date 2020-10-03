@@ -23,51 +23,43 @@
         {{#pix}} i/up, core, {{#str}} totop, theme_vetagro {{/str}}{{/pix}}
     </a>
 </div>
-<footer id="page-footer" class="py-3 text-white bg-dark">
-    <div class="container">
-        <div class="container-fluid infos-footer">
-            <div class="row-fluid justify-content-center">
-                <div class="col-4 col-md">
-                    <h3>{{#str}}usefullinks, theme_vetagro{{/str}}</h3>
-                    <ul>
-                        {{# additionalinfo.usefullinks }}
-                            <li><a href="{{url}}" alt="{{alt}}">{{text}}</a></li>
-                        {{/ additionalinfo.usefullinks }}
-                        {{# output.custom_menu_flat }}
-                            {{> theme_boost/custom_menu_footer }}
-                        {{/ output.custom_menu_flat }}
+<footer id="page-footer" class="py-3 text-white bg-dark pt-5">
+    <div class="container-fluid infos-footer">
+        <div class="row-fluid justify-content-center">
+            <div class="col col-lg-2 useful-links">
+                <h3>{{#str}}usefullinks, theme_vetagro{{/str}}</h3>
+                {{# output.custom_menu_flat }}
+                    <ul class="list-unstyled pt-3">
+                        {{> theme_boost/custom_menu_footer }}
                     </ul>
-                </div>
-                <div class="col-8 col-md-auto">
-                    <div class="container">
-                        <div class="row">
-                            {{# additionalinfo.addresses }}
-                                <div class="col">
-                                    {{< theme_vetagro/footer_address }} {{/ theme_vetagro/footer_address}}
-                                </div>
-                            {{/ additionalinfo.addresses }}
-                        </div>
-                        <div class="row">
-                            {{# additionalinfo.membership }}
-                                <div class="col">
-                                    <h3>{{title}}</h3>
-                                    <img src="{{logo}}" alt="{{description}}"/>
-                                </div>
-                            {{/ additionalinfo.membership }}
-                        </div>
+                {{/ output.custom_menu_flat }}
+            </div>
+            <div class="col-auto col-lg-10">
+                <div class="container">
+                    <div class="row">
+                        {{# additionalinfo.addresses }}
+                            <div class="col">
+                                {{< theme_vetagro/footer_address }} {{/ theme_vetagro/footer_address}}
+                            </div>
+                        {{/ additionalinfo.addresses }}
+                    </div>
+                    <div class="row">
+                        {{# additionalinfo.membership }}
+                            {{< theme_vetagro/footer_membership }} {{/ theme_vetagro/footer_membership}}
+                        {{/ additionalinfo.membership }}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid legal-footer bg-pulse-grey">
-            <div class="row-fluid justify-content-center">
-                {{# additionalinfo.otherlinks }}
-                    <div class="col col-12 col-md">
-                        <a href="{{link}}">{{label}}</a>
-                    </div>
-                {{/ additionalinfo.otherlinks }}
-            </div>
+    </div>
+    <div class="container legal-footer bg-dark-grey">
+        <div class="row-fluid justify-content-center">
+            {{# additionalinfo.otherlinks }}
+                <div class="col col-12 col-md">
+                    <a href="{{link}}">{{label}}</a>
+                </div>
+            {{/ additionalinfo.otherlinks }}
+            {{{ output.standard_end_of_body_html }}}
         </div>
-        {{{ output.standard_end_of_body_html }}}
     </div>
 </footer>

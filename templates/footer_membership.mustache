@@ -15,25 +15,15 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    Page footer addresses.
+    Page footer membership.
     Example context (json):
     {
-        "title": "Campus Agronomique",
-        "address": "89 Avenue de l’Europe, 63370 Lempdes"
-        "tel": "04 73 98 13 13"
+        "title": "Établissement sous tutelle du ministère de l’Agriculture et de l’Alimentation",
+        "url" : "<imageurl>"
     }
 }}
 
-<div class="address">
-    <h3>{{ title }}</h3>
-    <ul>
-        <li class="postaddress">
-            <span>{{#str}}address, theme_vetagro{{/str}}</span>
-            <div>{{address}}</div>
-        </li>
-        <li class="phone">
-            <span>{{#str}}tel, theme_vetagro{{/str}}</span>
-            <div>{{tel}}</div>
-        </li>
-    </ul>
+<div class="membership col-4 py-3">
+    <h3 class="py-3">{{ title }}</h3>
+    <img src="{{ url }}" alt="{{ title }}" class="img-fluid py-3"/>
 </div>

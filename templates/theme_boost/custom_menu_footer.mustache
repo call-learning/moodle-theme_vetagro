@@ -1,7 +1,12 @@
     {{#children}}
         {{^divider}}
             {{#url}}
-                <li class="pt-2 pb-2"><a href="{{{url}}}" title="{{{title}}}">{{{text}}}</a></li>
+                <li class="pt-2 pb-2"><a
+                        href="{{{url}}}"
+                        title="{{{title}}}"
+                {{#isexternal}}class="external-link"{{/isexternal}}>
+                    {{{text}}}
+                </a></li>
             {{/url}}
             {{^url}}
                 <li class="pt-2 pb-2">{{{text}}}</li>

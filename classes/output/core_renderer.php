@@ -24,6 +24,10 @@
 
 namespace theme_vetagro\output;
 
+use custom_menu;
+use html_writer;
+use theme_vetagro\local\utils;
+
 defined('MOODLE_INTERNAL') || die;
 
 /**
@@ -38,58 +42,108 @@ class core_renderer extends \theme_clboost\output\core_renderer {
 
     public function get_template_additional_information() {
         $additionalinfo = parent::get_template_additional_information();
-        $additionalinfo->addresses = static::convert_addresses_config();
+        $additionalinfo->addresses = utils::convert_addresses_config();
+        $additionalinfo->membership = utils::convert_membership_config($this->page);
         return $additionalinfo;
     }
 
     /**
-     * Converts a string into a structured array of addresses which can
-     * then be added to the footer.
+     * Override the user menu just to show a button when user not connected
      *
-     * Structure:
-     *     addresslabel|address|tel
-     *
-     * Example structure:
-     *     Campus agronomique|89 Avenue de l’Europe, 63370 Lempdes|04 73 98 13 13
-     *
-     * @return array
+     * @param stdClass $user A user object, usually $USER.
+     * @param bool $withlinks true if a dropdown should be built.
+     * @return string HTML fragment.
      */
-    protected static function convert_addresses_config() {
-        $configtext = get_config('theme_vetagro', 'addresses');
-        $lines = explode("\n", $configtext);
-        $addresses = [];
-        foreach ($lines as $linenumber => $line) {
-            $line = trim($line);
-            if (strlen($line) == 0) {
-                continue;
-            }
-            // Parse item settings.
-            $addresslabel = null;
-            $address = null;
-            $tel = null;
-            $settings = explode('|', $line);
-            foreach ($settings as $i => $setting) {
-                $setting = trim($setting);
-                if (!empty($setting)) {
-                    switch ($i) {
-                        case 0:
-                            $addresslabel = $setting;
-                            break;
-                        case 1:
-                            $address = $setting;
-                            break;
-                        case 2:
-                            $tel = $setting;
-                            break;
-                    }
-                }
-            }
-            $addresses[] = (object) [
-                'title' => $addresslabel,
-                'address' => $address,
-                'tel' => $tel
-            ];
+    public function user_menu($user = null, $withlinks = null) {
+        global $USER, $CFG;
+        require_once($CFG->dirroot . '/user/lib.php');
+
+        if (is_null($user)) {
+            $user = $USER;
         }
-        return $addresses;
+
+        // Note: this behaviour is intended to match that of core_renderer::login_info,
+        // but should not be considered to be good practice; layout options are
+        // intended to be theme-specific. Please don't copy this snippet anywhere else.
+        if (is_null($withlinks)) {
+            $withlinks = empty($this->page->layout_options['nologinlinks']);
+        }
+
+        // Add a class for when $withlinks is false.
+        $usermenuclasses = 'usermenu';
+        if (!$withlinks) {
+            $usermenuclasses .= ' withoutlinks';
+        }
+
+        $returnstr = "";
+
+        // If during initial install, return the empty return string.
+        if (during_initial_install()) {
+            return $returnstr;
+        }
+
+        $loginpage = $this->is_login_page();
+        $loginurl = get_login_url();
+        // If not logged in, show the typical not-logged-in string.
+        if (!isloggedin()) {
+            $returnstr .= "<a href=\"$loginurl\">" . get_string('login') . '</a>';
+            return html_writer::div(
+                html_writer::span(
+                    \html_writer::link($loginurl, get_string('login'), array('class' => 'btn btn-primary'))
+                ),
+                $usermenuclasses
+            );
+
+        }
+        return parent:: user_menu($user, $withlinks);
     }
+
+    /**
+     * We want to show the custom menus as a list of links in the footer on small screens.
+     * Just return the menu object exported so we can render it differently.
+     */
+    public function custom_menu_flat() {
+        global $CFG;
+        $custommenuitems = '';
+
+        if (empty($custommenuitems) && !empty($CFG->custommenuitems)) {
+            $custommenuitems = $CFG->custommenuitems;
+        }
+        $usefullinks = get_config('theme_vetagro', 'usefullinks');
+        $custommenu = new custom_menu($usefullinks . $custommenuitems, current_language());
+        $langs = get_string_manager()->get_list_of_translations();
+        $haslangmenu = $this->lang_menu() != '';
+
+        if ($haslangmenu) {
+            $strlang = get_string('language');
+            $currentlang = current_language();
+            if (isset($langs[$currentlang])) {
+                $currentlang = $langs[$currentlang];
+            } else {
+                $currentlang = $strlang;
+            }
+            $this->language = $custommenu->add($currentlang, new moodle_url('#'), $strlang, 10000);
+            foreach ($langs as $langtype => $langname) {
+                $this->language->add($langname, new moodle_url($this->page->url, array('lang' => $langtype)), $langname);
+            }
+        }
+
+        // Mark external links.
+        $exportedlinks = $custommenu->export_for_template($this);
+        $this->mark_external_link($exportedlinks);
+
+        return $exportedlinks;
+    }
+
+    private function mark_external_link(&$link) {
+        global $CFG;
+        $link->isexternal = false;
+        if ($link->url && (get_host_from_url($link->url) != get_host_from_url($CFG->wwwroot))) {
+            $link->isexternal = true;
+        }
+        foreach ($link->children as $child) {
+            $this->mark_external_link($child);
+        }
+    }
+
 }

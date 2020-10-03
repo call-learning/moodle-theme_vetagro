@@ -61,6 +61,22 @@ class settings extends \theme_clboost\local\settings {
             PARAM_RAW);
         $page->add($setting);
 
+        $setting = new \admin_setting_configtextarea('theme_vetagro/usefullinks',
+            static::get_string('usefullinks', 'theme_vetagro'),
+            static::get_string('usefullinks_desc', 'theme_vetagro'),
+            "Nous contacter|http://www.vetagro-sup.fr/nous-contacter/\n".
+            "Plan d'accès|http://www.vetagro-sup.fr/plan-acces/",
+            PARAM_RAW);
+        $page->add($setting);
+
+
+        $setting = new \admin_setting_configtextarea('theme_vetagro/membership',
+            static::get_string('membership', 'theme_vetagro'),
+            static::get_string('membership_desc', 'theme_vetagro'),
+            "Etablissement sous tutelle du ministère de l'Agriculture et de l'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]",
+            PARAM_RAW);
+        $page->add($setting);
+
         $settings->add($page);
     }
 

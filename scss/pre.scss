@@ -1,10 +1,10 @@
-// Bootswatch
+// Bootswatch from Vetagro
 
 //
 // Color system
 //
 
-$white:    #fff !default;
+$white: #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #eee !default;
 $gray-300: #dee2e6 !default;
@@ -14,64 +14,72 @@ $gray-600: #666 !default;
 $gray-700: #495057 !default;
 $gray-800: #333 !default;
 $gray-900: #222 !default;
-$black:    #000 !default;
+$black: #000 !default;
 
-$blue:    #002182 !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #e0001e !default;
-$orange:  #fd7e14 !default;
-$yellow:  #F5E625 !default;
-$green:   #22B24C !default;
-$teal:    #20c997 !default;
-$cyan:    #369 !default;
+$blue: #002182 !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #e0001e !default;
+$orange: #fd7e14 !default;
+$yellow: #F5E625 !default;
+$green: #22B24C !default;
+$teal: #20c997 !default;
+$cyan: #369 !default;
 
 $light-blue: #046eba;
 $light-red: #ba0704;
 $dark-blue: #00090f;
 $dark-red: #0f0100;
 
-$primary:       #023b65 !default;
-$secondary:     #26282c !default;
-$success:       #3c6602 !default;
-$info:          #66023c !default;
-$warning:       #665402 !default;
-$danger:        #660402 !default;
-$light:         #046eba !default;
-$dark:          #26282c !default;
+$primary: #023b65 !default;
+$secondary: #26282c !default;
+$success: #3c6602 !default;
+$info: #66023c !default;
+$warning: #665402 !default;
+$danger: #660402 !default;
+$light: #046eba !default;
+$dark: #26282c !default;
 
 // Other
-$info-outline:    #046eba;
+$info-outline: #046eba;
 $warning-outline: #ba9904;
 
 // Fonts
 // See fonts.css (as we cannot import them in the scss)
 
-$font-family-sans-serif:        "Poppins", sans-serif !default;
-$font-family-button:            "Poppins", sans-serif !default;
+$font-family-sans-serif: "Poppins", sans-serif !default;
+$font-family-button: "Poppins", sans-serif !default;
+$font-family-base:            $font-family-sans-serif !default;
 
-$headings-font-family:        "Poppins", sans-serif !default;
-$headings-font-weight:        600 !default;
-$headings-line-height:        1.1 !default;
+$headings-font-family: "Poppins", sans-serif !default;
+$headings-font-weight: 600 !default;
+$headings-line-height: 1.1 !default;
 
 // Buttons
 
-$input-btn-padding-x:         1rem !default;
-$button-font-weight:          600 !default;
+$input-btn-padding-x: 1rem !default;
+$button-font-weight: 600 !default;
+$btn-border-radius:               1rem !default;
+$btn-border-radius-lg:            1.2rem !default;
+$btn-border-radius-sm:            .8rem !default;
 
 // Navbar
 
-$navbar-light-color:                rgba($black,.7) !default;
-$navbar-light-hover-color:          $black !default;
-$navbar-light-active-color:         $black !default;
-$nav-highlight-font-weight:         600 !default;
+$navbar-light-color: rgba($black, .7) !default;
+$navbar-light-hover-color: $black !default;
+$navbar-light-active-color: $black !default;
+$nav-highlight-font-weight: 600 !default;
+
+// Navdrawer
+$drawer-width: 285px !default;
+$drawer-width-semi-expanded: 106px !default;
 
 // Pagination
 
-$pagination-hover-color:            $white !default;
-$pagination-hover-bg:               $primary !default;
-$pagination-hover-border-color:     $primary !default;
+$pagination-hover-color: $white !default;
+$pagination-hover-bg: $primary !default;
+$pagination-hover-border-color: $primary !default;
 
 // Variables ===================================================================
 
@@ -80,12 +88,14 @@ $drawer-toggle-width: 50px;
 $navbar-height: 94px;
 
 
-.btn, button {
+.btn,
+button {
     font-family: $font-family-button;
     font-weight: $button-font-weight;
 }
 
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
     font-weight: $nav-highlight-font-weight;
 }
 
@@ -111,7 +121,7 @@ $theme-colors: map-merge((
 // Import Core moodle CSS
 @import "moodle";
 
-// Preset CSS
+// Reset a couple of values
 
 body {
     -webkit-font-smoothing: antialiased;

@@ -34,4 +34,88 @@ defined('MOODLE_INTERNAL') || die;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class utils {
+
+    /**
+     * Converts the addresses config string into an array of information that can be
+     * then added to the footer via the "footer_address" mustache template.
+     * Structure:
+     *     addresslabel|address|tel
+     *
+     * Example structure:
+     *     Campus agronomique|89 Avenue de l’Europe, 63370 Lempdes|04 73 98 13 13
+     *
+     * Converted into: an object with title, address, tel fields.
+     *
+     * @return array
+     * @throws \dml_exception
+     */
+    public static function convert_addresses_config() {
+        $configtext = get_config('theme_vetagro', 'addresses');
+
+        $lineparser = function ($setting, $index, &$currentobject) {
+            if (!empty($setting[$index])) {
+                $val = trim($setting[$index]);
+                switch ($index) {
+                    case 0:
+                        $currentobject->title = $val;
+                        break;
+                    case 1:
+                        $currentobject->address = $val;
+                        break;
+                    case 2:
+                        $currentobject->tel = $val;
+                        break;
+                }
+            }
+        };
+        return \theme_clboost\local\utils::convert_from_config($configtext, $lineparser);
+    }
+    /**
+     * Converts the membership config string into an array of information that can be
+     * then added to the footer via the "footer_address" mustache template.
+     * Structure:
+     *     addresslabel|address|tel
+     *
+     * Example structure:
+     *     Etablissement sous tutelle du ministère de l\'Agriculture et de l\'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]
+     *
+     * Converted into: an object with title and absolute url
+     * @param moodle_page $page
+     * @return array
+     * @throws \dml_exception
+     */
+    public static function convert_membership_config($page) {
+        $configtext = get_config('theme_vetagro', 'membership');
+
+        $lineparser = function  ($setting, $index, &$currentobject) use($page){
+            if (!empty($setting[$index])) {
+                $val = trim($setting[$index]);
+                switch ($index) {
+                    case 0:
+                        $currentobject->title = $val;
+                        break;
+                    case 1:
+                        $currentobject->url = '';
+                        if (strpos($val, '[[pix:') === 0) {
+                            $matches =  [];
+                            preg_match('/\[\[pix:(.+)\|(.+)\]\]/', $val, $matches);
+                            if ($matches) {
+                                $currentobject->url = $page->theme->image_url($matches[2],$matches[1]);
+                            }
+
+                        } else {
+                            try {
+                                $currentobject->url = (new \moodle_url($val))->out();
+                            } catch (\moodle_exception $e) {
+                                // We don't do anything here. The url will be empty.
+                            }
+                        }
+                        break;
+                }
+            }
+        };
+        // Line separator is comma as we use '|' for the url information.
+        return \theme_clboost\local\utils::convert_from_config($configtext, $lineparser, ',');
+    }
+
 }
