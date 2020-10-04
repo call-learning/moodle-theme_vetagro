@@ -58,7 +58,7 @@ $string['tel'] = 'Telephone';
 
 
 $string['membership'] = 'Membership logos for Footer';
-$string['addresses_desc'] = 'Membership info for Footer. <br/>Structure:
+$string['membership_desc'] = 'Membership info for Footer. <br/>Structure:
      <ul>
      <li>title,imageurl</li>
      <li>Exemple: Etablissement sous tutelle du ministère de l\'Agriculture et de l\'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]</li>

@@ -31,5 +31,9 @@ $plugin->maturity  = MATURITY_ALPHA;
 $plugin->component = 'theme_vetagro';
 $plugin->dependencies = [
     'theme_boost' => ANY_VERSION,
-    'theme_clboost' => '2020092300'
+    'theme_clboost' => '2020092300',
+    'block_thumblinks_action' => ANY_VERSION,
+    'block_featured_courses' => ANY_VERSION,
+    'block_vetagro_news' => ANY_VERSION,
+    'block_sponsors' => ANY_VERSION
 ];
