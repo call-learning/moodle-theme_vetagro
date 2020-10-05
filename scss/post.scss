@@ -275,3 +275,34 @@ body.scrolled #goto-top-link {
     visibility: visible;
     transition: visibility 0s ease 0s, opacity .7s ease .1s;
 }
+
+// Front page
+#page-site-index {
+    .card {
+        border: none;
+    }
+
+    .block {
+        .card-body {
+            text-align: center;
+            .card-title {
+                font-size: xx-large;
+                color: $primary;
+
+                &::after {
+                    content: "";
+                    width: 2rem;
+                    height: 2px;
+                    background-color: $primary;
+                    margin: 0.5rem auto 1em;
+                    display: block;
+                }
+            }
+            .content {
+                text-align: initial;
+            }
+
+
+        }
+    }
+}
