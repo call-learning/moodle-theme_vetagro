@@ -77,7 +77,14 @@ class settings extends \theme_clboost\local\settings {
             PARAM_RAW);
         $page->add($setting);
 
+        $setting = new \admin_setting_configstoredfile('theme_vetagro/randomimage',
+            static::get_string('randomimage', 'theme_vetagro'),
+            static::get_string('randomimage_desc', 'theme_vetagro'),
+            utils::RANDOM_IMAGE_FILE_AREA);
+        $page->add($setting);
+
         $settings->add($page);
+
     }
 
 }

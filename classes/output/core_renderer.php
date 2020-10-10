@@ -44,6 +44,7 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         $additionalinfo = parent::get_template_additional_information();
         $additionalinfo->addresses = utils::convert_addresses_config();
         $additionalinfo->membership = utils::convert_membership_config($this->page);
+        $additionalinfo->randomimageurl =  utils::get_random_image_url($this->page->theme->name);
         return $additionalinfo;
     }
 
@@ -99,8 +100,40 @@ class core_renderer extends \theme_clboost\output\core_renderer {
     }
 
     /**
+     * Returns the custom menu if one has been set
+     *
+     * Same as the core routine except we add further automatic menu (like catalog at the end)
+     *
+     * Theme developers: DO NOT OVERRIDE! Please override function
+     * {@link core_renderer::render_custom_menu()} instead.
+     *
+     * @param string $custommenuitems - custom menuitems set by theme instead of global theme settings
+     * @return string
+     *
+     * TODO : this should be overridable more easily (core issue)
+     */
+    public function custom_menu($custommenuitems = '') {
+        global $CFG;
+
+        if (empty($custommenuitems) && !empty($CFG->custommenuitems)) {
+            $custommenuitems = $CFG->custommenuitems;
+        }
+        list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
+        $custommenuitems .= "\n{$urltext}|{$url}";
+
+        $custommenu = new custom_menu($custommenuitems, current_language());
+        return $this->render_custom_menu($custommenu);
+    }
+
+    /**
      * We want to show the custom menus as a list of links in the footer on small screens.
+     *
      * Just return the menu object exported so we can render it differently.
+     * This is slightly different from core in two ways:
+     *  - we add resource library menu
+     *  - mark menu as external menus so we can style them differently.
+     *
+     * TODO : this should be overridable more easily (core issue)
      */
     public function custom_menu_flat() {
         global $CFG;
@@ -109,8 +142,10 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         if (empty($custommenuitems) && !empty($CFG->custommenuitems)) {
             $custommenuitems = $CFG->custommenuitems;
         }
-        $usefullinks = get_config('theme_vetagro', 'usefullinks');
-        $custommenu = new custom_menu($usefullinks . $custommenuitems, current_language());
+        list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
+        $custommenuitems .= "\n{$urltext}|{$url}";
+
+        $custommenu = new custom_menu($custommenuitems, current_language());
         $langs = get_string_manager()->get_list_of_translations();
         $haslangmenu = $this->lang_menu() != '';
 
@@ -127,14 +162,19 @@ class core_renderer extends \theme_clboost\output\core_renderer {
                 $this->language->add($langname, new moodle_url($this->page->url, array('lang' => $langtype)), $langname);
             }
         }
-
         // Mark external links.
         $exportedlinks = $custommenu->export_for_template($this);
         $this->mark_external_link($exportedlinks);
 
-        return $exportedlinks;
+        return $custommenu->export_for_template($this);
     }
 
+
+    /**
+     * Mark the link as an external link so we can style it.
+     *
+     * @param $link
+     */
     private function mark_external_link(&$link) {
         global $CFG;
         $link->isexternal = false;

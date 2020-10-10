@@ -278,6 +278,26 @@ body.scrolled #goto-top-link {
 
 // Front page
 #page-site-index {
+    .fp-header {
+        background-size: cover;
+        background-image: url([[pix:theme|home/background-home]]);
+        @include media-breakpoint-up(lg) {
+            background-image: url([[pix:theme|home/background-home2x]]);
+        }
+        @include media-breakpoint-up(xl) {
+            background-image: url([[pix:theme|home/background-home3x]]);
+        }
+        min-height: 380px;
+        color: white;
+        display: flex;
+        .container {
+            align-self: center;
+            h3 {
+                font-size: 2.5em;
+                margin-bottom: 1em;
+            }
+        }
+    }
     .card {
         border: none;
     }
@@ -301,8 +321,68 @@ body.scrolled #goto-top-link {
             .content {
                 text-align: initial;
             }
-
-
         }
+    }
+    .block_sponsors.block {
+        .card-body {
+            .card-title {
+                color: $gray-500;
+                &::after {
+                    content: none;
+                }
+            }
+        }
+    }
+}
+
+// Block featured courses
+.block_featured_courses {
+    .thumbnail {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
+        background-color: $white;
+
+    }
+}
+
+// Block vetagro news
+
+.block_vetagro_news {
+    .glide__slide a {
+        max-height: 368px;
+    }
+}
+
+// Extended info on the footer
+.extended-footer {
+    display: none;
+}
+#page-site-index {
+    .extended-footer {
+        display: initial;
+    }
+}
+
+// Login page
+
+#page-login-index {
+    div[role='main'] {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        .main-login-content {
+            flex-grow: 1;
+        }
+    }
+
+}
+
+// Resource library
+
+.local-resourcelibrary .dashboard-card-deck {
+    .dashboard-card-img {
+        height: 12rem;
+    }
+    .card-body {
+        min-height: 7rem;
     }
 }

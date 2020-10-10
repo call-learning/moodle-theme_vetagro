@@ -34,6 +34,7 @@ defined('MOODLE_INTERNAL') || die;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class utils {
+    const RANDOM_IMAGE_FILE_AREA = 'randomimage';
 
     /**
      * Converts the addresses config string into an array of information that can be
@@ -118,4 +119,31 @@ class utils {
         return \theme_clboost\local\utils::convert_from_config($configtext, $lineparser, ',');
     }
 
+    public static function get_random_image_url($themename) {
+        $fs = get_file_storage();
+        $theme =
+        $syscontextid = \context_system::instance()->id;
+        $allfiles = $fs->get_area_files($syscontextid,
+            'theme_'.$themename,
+            'randomimage');
+
+        $filesurl = [
+            new \moodle_url("/theme/{$themename}/pix/bg-right.jpg")
+        ];
+        foreach ($allfiles as $file) {
+            /* @var \stored_file $file */
+            if ($file->is_valid_image()) {
+                $filesurl = \moodle_url::make_pluginfile_url(
+                    $syscontextid,
+                    'theme_'.$themename,
+                    self::RANDOM_IMAGE_FILE_AREA,
+                    0,
+                    $file->get_filepath(),
+                    $file->get_filename()
+                )->out();
+            }
+        }
+        $randomindex = random_int(1, count($filesurl)) - 1;
+        return $filesurl[$randomindex];
+    }
 }
