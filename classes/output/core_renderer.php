@@ -26,6 +26,7 @@ namespace theme_vetagro\output;
 
 use custom_menu;
 use html_writer;
+use moodle_url;
 use theme_vetagro\local\utils;
 
 defined('MOODLE_INTERNAL') || die;
