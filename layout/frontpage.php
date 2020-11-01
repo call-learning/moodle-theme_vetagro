@@ -19,7 +19,7 @@
  *
  * This defines a frontpage that will allow adding block to the main content area.
  *
- * @package   theme_clboost
+ * @package   theme_vetagro
  * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

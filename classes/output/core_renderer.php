@@ -35,17 +35,24 @@ defined('MOODLE_INTERNAL') || die;
  * Renderers to align Moodle's HTML with that expected by Bootstrap
  *
  *
- * @package   theme_envf
+ * @package   theme_vetagro
  * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class core_renderer extends \theme_clboost\output\core_renderer {
 
+    /**
+     * Get additional info for mustache template
+     *
+     * @return \stdClass
+     * @throws \coding_exception
+     * @throws \dml_exception
+     */
     public function get_template_additional_information() {
         $additionalinfo = parent::get_template_additional_information();
         $additionalinfo->addresses = utils::convert_addresses_config();
         $additionalinfo->membership = utils::convert_membership_config($this->page);
-        $additionalinfo->randomimageurl =  utils::get_random_image_url($this->page->theme->name);
+        $additionalinfo->randomimageurl = utils::get_random_image_url($this->page->theme->name);
         return $additionalinfo;
     }
 
@@ -97,7 +104,7 @@ class core_renderer extends \theme_clboost\output\core_renderer {
             );
 
         }
-        return parent:: user_menu($user, $withlinks);
+        return parent::user_menu($user, $withlinks);
     }
 
     /**
@@ -174,7 +181,7 @@ class core_renderer extends \theme_clboost\output\core_renderer {
     /**
      * Mark the link as an external link so we can style it.
      *
-     * @param $link
+     * @param array $link
      */
     private function mark_external_link(&$link) {
         global $CFG;

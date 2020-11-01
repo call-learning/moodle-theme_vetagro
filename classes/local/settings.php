@@ -24,12 +24,9 @@
 
 namespace theme_vetagro\local;
 
-use admin_setting_configcolourpicker;
 use admin_setting_configstoredfile;
-use admin_setting_configtext;
-use admin_setting_scsscode;
+use admin_setting_configtextarea;
 use admin_settingpage;
-use theme_boost_admin_settingspage_tabs;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -51,40 +48,39 @@ class settings extends \theme_clboost\local\settings {
      */
     protected static function additional_settings(admin_settingpage &$settings) {
         // Advanced settings.
-        $page = new admin_settingpage('additionalinfo', static::get_string('additionalinfo', 'theme_vetagro'));
+        $page = new admin_settingpage('additionalinfo',
+            static::get_string('additionalinfo', 'theme_vetagro'));
 
-        $setting = new \admin_setting_configtextarea('theme_vetagro/addresses',
+        $setting = new admin_setting_configtextarea('theme_vetagro/addresses',
             static::get_string('addresses', 'theme_vetagro'),
             static::get_string('addresses_desc', 'theme_vetagro'),
-            "Campus agronomique|89 Avenue de l’Europe, 63370 Lempdes|04 73 98 13 13\n".
+            "Campus agronomique|89 Avenue de l’Europe, 63370 Lempdes|04 73 98 13 13\n" .
             "Campus vétérinaire|1 avenue Bourgelat, 69280 Marcy-l’Étoile|04 78 87 25 25",
             PARAM_RAW);
         $page->add($setting);
 
-        $setting = new \admin_setting_configtextarea('theme_vetagro/usefullinks',
+        $setting = new admin_setting_configtextarea('theme_vetagro/usefullinks',
             static::get_string('usefullinks', 'theme_vetagro'),
             static::get_string('usefullinks_desc', 'theme_vetagro'),
-            "Nous contacter|http://www.vetagro-sup.fr/nous-contacter/\n".
+            "Nous contacter|http://www.vetagro-sup.fr/nous-contacter/\n" .
             "Plan d'accès|http://www.vetagro-sup.fr/plan-acces/",
             PARAM_RAW);
         $page->add($setting);
 
-
-        $setting = new \admin_setting_configtextarea('theme_vetagro/membership',
+        $setting = new admin_setting_configtextarea('theme_vetagro/membership',
             static::get_string('membership', 'theme_vetagro'),
             static::get_string('membership_desc', 'theme_vetagro'),
-            "Etablissement sous tutelle du ministère de l'Agriculture et de l'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]",
+            "Etablissement sous tutelle du ministère de l'Agriculture et de".
+            " l'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]",
             PARAM_RAW);
         $page->add($setting);
 
-        $setting = new \admin_setting_configstoredfile('theme_vetagro/randomimage',
+        $setting = new admin_setting_configstoredfile('theme_vetagro/randomimage',
             static::get_string('randomimage', 'theme_vetagro'),
             static::get_string('randomimage_desc', 'theme_vetagro'),
             utils::RANDOM_IMAGE_FILE_AREA);
         $page->add($setting);
 
         $settings->add($page);
-
     }
-
 }

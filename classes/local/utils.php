@@ -24,6 +24,13 @@
 
 namespace theme_vetagro\local;
 
+use coding_exception;
+use context_system;
+use dml_exception;
+use moodle_exception;
+use moodle_url;
+use stored_file;
+
 defined('MOODLE_INTERNAL') || die;
 
 /**
@@ -34,6 +41,9 @@ defined('MOODLE_INTERNAL') || die;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class utils {
+    /**
+     * Random image file area name
+     */
     const RANDOM_IMAGE_FILE_AREA = 'randomimage';
 
     /**
@@ -48,12 +58,12 @@ class utils {
      * Converted into: an object with title, address, tel fields.
      *
      * @return array
-     * @throws \dml_exception
+     * @throws dml_exception
      */
     public static function convert_addresses_config() {
         $configtext = get_config('theme_vetagro', 'addresses');
 
-        $lineparser = function ($setting, $index, &$currentobject) {
+        $lineparser = function($setting, $index, &$currentobject) {
             if (!empty($setting[$index])) {
                 $val = trim($setting[$index]);
                 switch ($index) {
@@ -71,6 +81,7 @@ class utils {
         };
         return \theme_clboost\local\utils::convert_from_config($configtext, $lineparser);
     }
+
     /**
      * Converts the membership config string into an array of information that can be
      * then added to the footer via the "footer_address" mustache template.
@@ -78,17 +89,19 @@ class utils {
      *     addresslabel|address|tel
      *
      * Example structure:
-     *     Etablissement sous tutelle du ministère de l\'Agriculture et de l\'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]
+     *     Etablissement sous tutelle du ministère de l\'Agriculture et de
+     * l\'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]
      *
      * Converted into: an object with title and absolute url
+     *
      * @param moodle_page $page
      * @return array
-     * @throws \dml_exception
+     * @throws dml_exception
      */
     public static function convert_membership_config($page) {
         $configtext = get_config('theme_vetagro', 'membership');
 
-        $lineparser = function  ($setting, $index, &$currentobject) use($page){
+        $lineparser = function($setting, $index, &$currentobject) use ($page) {
             if (!empty($setting[$index])) {
                 $val = trim($setting[$index]);
                 switch ($index) {
@@ -98,17 +111,17 @@ class utils {
                     case 1:
                         $currentobject->url = '';
                         if (strpos($val, '[[pix:') === 0) {
-                            $matches =  [];
+                            $matches = [];
                             preg_match('/\[\[pix:(.+)\|(.+)\]\]/', $val, $matches);
                             if ($matches) {
-                                $currentobject->url = $page->theme->image_url($matches[2],$matches[1]);
+                                $currentobject->url = $page->theme->image_url($matches[2], $matches[1]);
                             }
 
                         } else {
                             try {
-                                $currentobject->url = (new \moodle_url($val))->out();
-                            } catch (\moodle_exception $e) {
-                                // We don't do anything here. The url will be empty.
+                                $currentobject->url = (new moodle_url($val))->out();
+                            } catch (moodle_exception $e) {
+                                $currentobject->url = new moodle_url('');
                             }
                         }
                         break;
@@ -119,28 +132,34 @@ class utils {
         return \theme_clboost\local\utils::convert_from_config($configtext, $lineparser, ',');
     }
 
+    /**
+     * Get random image URL
+     *
+     * @param string $themename
+     * @return moodle_url
+     * @throws coding_exception
+     * @throws dml_exception
+     */
     public static function get_random_image_url($themename) {
         $fs = get_file_storage();
-        $theme =
-        $syscontextid = \context_system::instance()->id;
+        $syscontextid = context_system::instance()->id;
         $allfiles = $fs->get_area_files($syscontextid,
-            'theme_'.$themename,
+            'theme_' . $themename,
             'randomimage');
 
         $filesurl = [
-            new \moodle_url("/theme/{$themename}/pix/bg-right.jpg")
+            new moodle_url("/theme/{$themename}/pix/bg-right.jpg")
         ];
         foreach ($allfiles as $file) {
-            /* @var \stored_file $file */
             if ($file->is_valid_image()) {
-                $filesurl = \moodle_url::make_pluginfile_url(
+                $filesurl[] = moodle_url::make_pluginfile_url(
                     $syscontextid,
-                    'theme_'.$themename,
+                    'theme_' . $themename,
                     self::RANDOM_IMAGE_FILE_AREA,
                     0,
                     $file->get_filepath(),
                     $file->get_filename()
-                )->out();
+                );
             }
         }
         $randomindex = random_int(1, count($filesurl)) - 1;

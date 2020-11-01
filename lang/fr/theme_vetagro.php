@@ -23,40 +23,39 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
+$string['additionalinfo'] = 'Information additionnelle';
+$string['address'] = 'Addresse';
 $string['choosereadme'] =
-    'This is a Boost Based subtheme, itself based on CLBoost.';
-$string['additionalinfo'] = 'Additional information';
-$string['addresses'] = 'Addresses for Footer';
-$string['addresses_desc'] = 'Addresses for Footer.  <br/>Structure:
+    'Un thème basé sur Boost et CLBoost.';
+$string['addresses'] = 'Addresses pour le bas de page';
+$string['addresses_desc'] = 'Addresses pour le bas de page.  <br/>Structure:
      <ul>
      <li>addresslabel|address|tel</li>
      <li>Exemple: Campus agronomique|89 Avenue de l’Europe, 63370 Lempdes|04 73 98 13 13</li>
      </ul>';
-$string['address'] = 'Address';
-$string['configtitle'] = 'Vetagro Theme';
-$string['cookiesrgpd'] = 'Cookies and data management';
-$string['mentionlegales'] = 'Legal';
-$string['nobootswatch'] = 'None';
+$string['configtitle'] = 'Theme Vetagro';
+$string['cookiesrgpd'] = 'Gestion des cookies et des données';
+$string['copyright'] = '©VetagroSup  2020';
+$string['nobootswatch'] = 'Aucun';
 $string['pluginname'] = 'Vetagro';
-$string['copyright'] = '© Vetagrosup  2020';
-$string['membership'] = 'Additional Membership logos for Footer';
-$string['membership_desc'] = 'Additional Membership info for Footer. <br/>Structure:
+$string['mentionlegales'] = 'Mentions légales';
+$string['membership'] = 'Icones sponsors supplémentaires pour le bas de pag';
+$string['membership_desc'] = 'Icones sponsors supplémentaires pour le bas de page. <br/>Structure:
      <ul>
      <li>title,imageurl</li>
      <li>Exemple: Etablissement sous tutelle du ministère de l\'Agriculture et de l\'alimentation,[[pix:theme_vetagro|ministere-agriculture-alimentation]]</li>
      <li>Exemple: Vetagrosup est membre de,http://www.vetagro-sup.fr/wp-content/uploads/2020/09/logos-pied-de-page.jpg</li>
      </ul>';
-$string['region-side-pre'] = 'Right';
-$string['region-content'] = 'Content';
+$string['region-side-pre'] = 'Droite';
+$string['region-content'] = 'Contenu';
 $string['republiquefrancaise'] = 'République Française';
-$string['tel'] = 'Telephone';
-$string['totop'] = 'Go to top';
-$string['usefullinks'] = 'Useful links';
-$string['usefullinks_desc'] = 'Useful links, same format as the custom menu links in Moodle.
+$string['tel'] = 'Téléphonne';
+$string['totop'] = 'En haut';
+$string['usefullinks'] = 'Liens utiles';
+$string['usefullinks_desc'] = 'Liens utiles, même format que les liens du menu personalisable de Moodle.
 For example:
 <pre>
 App help|https://someurl.xyz/help
 My grades|https://someurl.xyz/local/mygrades/index.php|embedded|en
 Mis calificaciones|https://someurl.xyz/local/mygrades/index.php|embedded|es
 </pre>';
-
