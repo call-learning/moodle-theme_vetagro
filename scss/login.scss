@@ -1,0 +1,11 @@
+#page-login-index {
+    div[role='main'] {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        .main-login-content {
+            flex-grow: 1;
+        }
+    }
+
+}

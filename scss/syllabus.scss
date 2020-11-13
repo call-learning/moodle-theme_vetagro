@@ -1,0 +1,33 @@
+.syllabus-pres {
+    aside.syllabus-side {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
+        background-color: white;
+        ul {
+            li {
+                border: none;
+
+                h4 {
+                    color: $gray-500;
+                    font-variant: all-small-caps;
+                }
+            }
+        }
+    }
+}
+
+#page-syllabus-view #page {
+    @extend .container;
+    #page-header {
+        .card-body div.d-flex {
+            .page-header-headings {
+                text-align: center;
+            }
+        }
+        .card {
+            border: none;
+        }
+    }
+    #region-main {
+        border: none;
+    }
+}

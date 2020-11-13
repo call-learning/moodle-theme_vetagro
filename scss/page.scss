@@ -1,0 +1,40 @@
+.bg-dark-grey {
+    background-color: $gray-900;
+}
+
+.pagelayout-frontpage {
+    #region-main {
+        border: initial;
+        padding: initial;
+    }
+}
+
+.header-image {
+    max-height: $navbar-height;
+}
+
+#page-wrapper {
+    nav.navbar {
+        .logo img,
+        .rf-logo {
+            max-height: 78px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            .logo img {
+                max-width: 35px;
+            }
+            .rf-logo {
+                width: 100px;
+            }
+        }
+    }
+}
+
+#page {
+    margin-top: $navbar-height;
+}
+
+#page-login-index #page {
+    margin-top: auto;
+}
