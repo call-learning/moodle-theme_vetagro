@@ -64,17 +64,16 @@ class utils {
         $configtext = get_config('theme_vetagro', 'addresses');
 
         $lineparser = function($setting, $index, &$currentobject) {
-            if (!empty($setting[$index])) {
-                $val = trim($setting[$index]);
+            if (!empty($setting)) {
                 switch ($index) {
                     case 0:
-                        $currentobject->title = $val;
+                        $currentobject->title = $setting;
                         break;
                     case 1:
-                        $currentobject->address = $val;
+                        $currentobject->address = $setting;
                         break;
                     case 2:
-                        $currentobject->tel = $val;
+                        $currentobject->tel = $setting;
                         break;
                 }
             }
@@ -102,24 +101,23 @@ class utils {
         $configtext = get_config('theme_vetagro', 'membership');
 
         $lineparser = function($setting, $index, &$currentobject) use ($page) {
-            if (!empty($setting[$index])) {
-                $val = trim($setting[$index]);
+            if (!empty($setting)) {
                 switch ($index) {
                     case 0:
-                        $currentobject->title = $val;
+                        $currentobject->title = $setting;
                         break;
                     case 1:
                         $currentobject->url = '';
-                        if (strpos($val, '[[pix:') === 0) {
+                        if (strpos($setting, '[[pix:') === 0) {
                             $matches = [];
-                            preg_match('/\[\[pix:(.+)\|(.+)\]\]/', $val, $matches);
+                            preg_match('/\[\[pix:(.+)\|(.+)\]\]/', $setting, $matches);
                             if ($matches) {
                                 $currentobject->url = $page->theme->image_url($matches[2], $matches[1]);
                             }
 
                         } else {
                             try {
-                                $currentobject->url = (new moodle_url($val))->out();
+                                $currentobject->url = (new moodle_url($setting))->out();
                             } catch (moodle_exception $e) {
                                 $currentobject->url = new moodle_url('');
                             }

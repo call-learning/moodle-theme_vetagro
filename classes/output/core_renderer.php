@@ -24,6 +24,7 @@
 
 namespace theme_vetagro\output;
 
+use core_text;
 use custom_menu;
 use html_writer;
 use moodle_url;
@@ -177,7 +178,6 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         return $custommenu->export_for_template($this);
     }
 
-
     /**
      * Mark the link as an external link so we can style it.
      *
@@ -192,6 +192,45 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         foreach ($link->children as $child) {
             $this->mark_external_link($child);
         }
+    }
+
+    /**
+     * Get the course image for the given course. This
+     * overrides the usual Moodle pattern.
+     *
+     * The datauri is an encoded svg that can be passed as a url.
+     *
+     * @param int $id Id to use when generating the pattern
+     * @return string datauri
+     */
+    public function get_generated_image_for_id($id) {
+        // First let's see if we have a generic image for this course.
+        // On this install this depends on the course theme.
+        $data = \core_course\customfield\course_handler::create()->export_instance_data_object($id);
+        if (!empty($data->themes)) {
+            global $CFG;
+            // TODO : allow end user to upload files in the theme to override defaults.
+            $themews = strtolower(
+                str_replace(' ', '',
+                core_text::convert($data->themes, 'utf-8', 'ascii'))
+            );
+            $files = scandir($CFG->dirroot . '/theme/vetagro/pix/themes', SCANDIR_SORT_DESCENDING);
+            foreach ($files as $f) {
+                if (in_array($f, array('.', '..'))) {
+                    continue;
+                }
+                $fwithoutsuffix = strstr($f, '.', true);
+                $fws = strtolower(
+                    str_replace(' ', '',
+                    core_text::convert($fwithoutsuffix, 'utf-8', 'ascii')
+                    )
+                );
+                if (strstr($fws, $themews)) {
+                    return $CFG->wwwroot . '/theme/vetagro/pix/themes/' . $f;
+                }
+            }
+        }
+        return parent::get_generated_image_for_id($id);
     }
 
 }

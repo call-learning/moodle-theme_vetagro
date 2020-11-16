@@ -2,6 +2,7 @@
     aside.syllabus-side {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
         background-color: white;
+        min-width: 300px;
         ul {
             li {
                 border: none;
@@ -29,5 +30,22 @@
     }
     #region-main {
         border: none;
+    }
+    .sfield-themes .sfield-content .dlist {
+        @extend .badge;
+        @extend .badge-primary;
+        margin-right: 0.5rem;
+    }
+    .sfield-summary {
+        h3 {
+            color: $primary;
+            padding-top: 2em;
+        }
+    }
+    .syllabus-content {
+        padding-top: 3rem;
+    }
+    .sfield-courseimage img.img-fluid {
+        max-width: 60%;
     }
 }
