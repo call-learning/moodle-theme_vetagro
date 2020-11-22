@@ -101,7 +101,9 @@
             <div class="card-block">
                 {{#logourl}}
                     <h2 class="text-center">
-                        <img src="{{logourl}}" class="img-fluid m-3" title="{{sitename}}" alt="{{sitename}}"/>
+                        <a href="{{config.wwwroot}}">
+                            <img src="{{logourl}}" class="img-fluid m-3" title="{{sitename}}" alt="{{sitename}}"/>
+                        </a>
                     </h2>
                 {{/logourl}}
                 {{^logourl}}
