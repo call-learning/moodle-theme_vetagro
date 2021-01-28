@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use theme_vetagro\local\utils;
+
 defined('MOODLE_INTERNAL') || die();
 
 /**
@@ -38,6 +40,41 @@ defined('MOODLE_INTERNAL') || die();
  * @throws coding_exception
  */
 function theme_vetagro_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
-    return theme_clboost\local\utils::generic_pluginfile('envf',
+    return theme_clboost\local\utils::generic_pluginfile('vetagro',
         $course, $cm, $context, $filearea, $args, $forcedownload, $options);
+}
+
+/**
+ * Inject additional SCSS.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return string
+ */
+function theme_vetagro_get_extra_scss($theme) {
+    $extracss = theme_clboost_get_extra_scss($theme);
+
+    $frontpageimagesurls = utils::get_frontpage_images_url($theme->name);
+    if (empty($frontpageimagesurls)) {
+        $frontpageimagesurls[utils::IMAGE_SIZE_TYPE_NORMAL] = '[[pix:theme|home/background-home]]';
+        $frontpageimagesurls[utils::IMAGE_SIZE_TYPE_LG] = '[[pix:theme|home/background-home2x]]';
+        $frontpageimagesurls[utils::IMAGE_SIZE_TYPE_XL] = '[[pix:theme|home/background-home3x]]';
+    }
+    $fpimagedef = '
+    #page-site-index {
+        .fp-header {';
+    foreach ($frontpageimagesurls as $type => $fpdef) {
+        $bgdef = "background-image: url($fpdef);";
+        if ($type != utils::IMAGE_SIZE_TYPE_NORMAL) {
+            $fpimagedef .= " @include media-breakpoint-up($type) {
+                $bgdef
+             }";
+        } else {
+            $fpimagedef .= $bgdef;
+        }
+
+    }
+    $fpimagedef .= '
+        }
+    }';
+    return $extracss . $fpimagedef;
 }

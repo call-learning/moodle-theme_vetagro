@@ -2,13 +2,6 @@
 #page-site-index {
     .fp-header {
         background-size: cover;
-        background-image: url([[pix:theme|home/background-home]]);
-        @include media-breakpoint-up(lg) {
-            background-image: url([[pix:theme|home/background-home2x]]);
-        }
-        @include media-breakpoint-up(xl) {
-            background-image: url([[pix:theme|home/background-home3x]]);
-        }
         min-height: 380px;
         color: white;
         display: flex;
@@ -44,6 +37,7 @@
                 text-align: initial;
             }
         }
+        margin-top: 4em;
     }
     .block_sponsors.block {
         .card-body {
@@ -52,6 +46,9 @@
                 &::after {
                     content: none;
                 }
+            }
+            img.logo {
+                max-height: 81px;
             }
         }
     }
@@ -70,7 +67,7 @@
 
 .block_vetagro_news {
     .glide__slide a {
-        height: 400px;
+        height: 300px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

@@ -49,8 +49,13 @@ $string['membership_desc'] = 'Icones sponsors supplémentaires pour le bas de pa
 $string['region-side-pre'] = 'Droite';
 $string['region-content'] = 'Contenu';
 $string['republiquefrancaise'] = 'République Française';
+$string['randomimage'] = 'Image tirée au hasard';
+$string['randomimage_desc'] = 'Une image tirée au hasard parmi la liste qui peut être utilisée dans le thème';
+$string['frontpageimage'] = 'Image de la page de garde';
+$string['frontpageimage_desc'] = 'Image de la page de garde pour the theme';
 $string['tel'] = 'Téléphonne';
 $string['totop'] = 'En haut';
+$string['teacherdashboardmenu'] = 'Menu enseignant';
 $string['usefullinks'] = 'Liens utiles';
 $string['usefullinks_desc'] = 'Liens utiles, même format que les liens du menu personalisable de Moodle.
 For example:

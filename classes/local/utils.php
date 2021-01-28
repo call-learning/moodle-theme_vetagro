@@ -47,6 +47,11 @@ class utils {
     const RANDOM_IMAGE_FILE_AREA = 'randomimage';
 
     /**
+     * Frontpage image file area name
+     */
+    const FRONTPAGE_IMAGE_FILE_AREA = 'frontpageimage';
+
+    /**
      * Converts the addresses config string into an array of information that can be
      * then added to the footer via the "footer_address" mustache template.
      * Structure:
@@ -143,7 +148,7 @@ class utils {
         $syscontextid = context_system::instance()->id;
         $allfiles = $fs->get_area_files($syscontextid,
             'theme_' . $themename,
-            'randomimage');
+            self::RANDOM_IMAGE_FILE_AREA);
 
         $filesurl = [
             new moodle_url("/theme/{$themename}/pix/bg-right.jpg")
@@ -163,4 +168,62 @@ class utils {
         $randomindex = random_int(1, count($filesurl)) - 1;
         return $filesurl[$randomindex];
     }
+
+    /**
+     * Get frontpage images URL
+     *
+     * @param string $themename
+     * @return moodle_url
+     * @throws coding_exception
+     * @throws dml_exception
+     */
+    public static function get_frontpage_images_url($themename) {
+        $fs = get_file_storage();
+        $syscontextid = context_system::instance()->id;
+        $allfiles = $fs->get_area_files($syscontextid,
+            'theme_' . $themename,
+            self::FRONTPAGE_IMAGE_FILE_AREA);
+
+        $filesurl = [];
+        foreach ($allfiles as $file) {
+            if ($file->is_valid_image()) {
+                $filename = $file->get_filename();
+                $islg = substr($filename, -strlen(self::IMAGE_SIZE_TYPE_LG)) == self::IMAGE_SIZE_TYPE_LG;
+                $isxl = substr($filename, -strlen(self::IMAGE_SIZE_TYPE_XL)) == self::IMAGE_SIZE_TYPE_XL;
+                $type = $islg ? self::IMAGE_SIZE_TYPE_LG : self::IMAGE_SIZE_TYPE_NORMAL;
+                $type = $isxl ? self::IMAGE_SIZE_TYPE_XL : $type;
+
+                $filesurl[$type] = moodle_url::make_pluginfile_url(
+                    $syscontextid,
+                    'theme_' . $themename,
+                    self::FRONTPAGE_IMAGE_FILE_AREA,
+                    0,
+                    $file->get_filepath(),
+                    $filename
+                )->out_as_local_url();
+            }
+        }
+        if (count($filesurl)) {
+            if (!isset($filesurl[self::IMAGE_SIZE_TYPE_LG])) {
+                $filesurl[self::IMAGE_SIZE_TYPE_LG] = $filesurl[self::IMAGE_SIZE_TYPE_NORMAL];
+            }
+            if (!isset($filesurl[self::IMAGE_SIZE_TYPE_XL])) {
+                $filesurl[self::IMAGE_SIZE_TYPE_XL] = $filesurl[self::IMAGE_SIZE_TYPE_NORMAL];
+            }
+        }
+        return $filesurl;
+    }
+
+    /**
+     * Normal Size for image
+     */
+    const IMAGE_SIZE_TYPE_NORMAL = 'normal';
+    /**
+     * LG Size for image
+     */
+    const IMAGE_SIZE_TYPE_LG = 'lg';
+    /**
+     * XL Size for image
+     */
+    const IMAGE_SIZE_TYPE_XL = 'xl';
 }

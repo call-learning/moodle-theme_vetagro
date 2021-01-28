@@ -70,9 +70,8 @@ class theme_clboost_utils_test extends advanced_testcase {
      * @throws dml_exception
      */
     public function test_get_random_image() {
-        global $CFG;
         $this->resetAfterTest();
-        $theme = theme_config::load('clboost');
+        theme_config::load('clboost');
 
         $imageurl1 = \theme_vetagro\local\utils::get_random_image_url('vetagro');
         $imageurl2 = \theme_vetagro\local\utils::get_random_image_url('vetagro');

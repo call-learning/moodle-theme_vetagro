@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Presets management
+ * Output renderer
  *
  * @package   theme_vetagro
  * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
@@ -24,10 +24,13 @@
 
 namespace theme_vetagro\output;
 
+use component_action;
 use core_text;
 use custom_menu;
 use html_writer;
 use moodle_url;
+use pix_icon;
+use popup_action;
 use theme_vetagro\local\utils;
 
 defined('MOODLE_INTERNAL') || die;
@@ -92,7 +95,6 @@ class core_renderer extends \theme_clboost\output\core_renderer {
             return $returnstr;
         }
 
-        $loginpage = $this->is_login_page();
         $loginurl = get_login_url();
         // If not logged in, show the typical not-logged-in string.
         if (!isloggedin()) {
@@ -127,9 +129,10 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         if (empty($custommenuitems) && !empty($CFG->custommenuitems)) {
             $custommenuitems = $CFG->custommenuitems;
         }
-        list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
-        $custommenuitems .= "\n{$urltext}|{$url}";
-
+        if ($CFG->enableresourcelibrary && class_exists('\local_resourcelibrary\locallib\utils')) {
+            list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
+            $custommenuitems .= "\n{$urltext}|{$url}";
+        }
         $custommenu = new custom_menu($custommenuitems, current_language());
         return $this->render_custom_menu($custommenu);
     }
@@ -151,8 +154,10 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         if (empty($custommenuitems) && !empty($CFG->custommenuitems)) {
             $custommenuitems = $CFG->custommenuitems;
         }
-        list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
-        $custommenuitems .= "\n{$urltext}|{$url}";
+        if ($CFG->enableresourcelibrary && class_exists('\local_resourcelibrary\locallib\utils')) {
+            list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
+            $custommenuitems .= "\n{$urltext}|{$url}";
+        }
 
         $custommenu = new custom_menu($custommenuitems, current_language());
         $langs = get_string_manager()->get_list_of_translations();
@@ -212,7 +217,7 @@ class core_renderer extends \theme_clboost\output\core_renderer {
             // TODO : allow end user to upload files in the theme to override defaults.
             $themews = strtolower(
                 str_replace(' ', '',
-                core_text::convert($data->themes, 'utf-8', 'ascii'))
+                    core_text::convert($data->themes, 'utf-8', 'ascii'))
             );
             $files = scandir($CFG->dirroot . '/theme/vetagro/pix/themes', SCANDIR_SORT_DESCENDING);
             foreach ($files as $f) {
@@ -222,7 +227,7 @@ class core_renderer extends \theme_clboost\output\core_renderer {
                 $fwithoutsuffix = strstr($f, '.', true);
                 $fws = strtolower(
                     str_replace(' ', '',
-                    core_text::convert($fwithoutsuffix, 'utf-8', 'ascii')
+                        core_text::convert($fwithoutsuffix, 'utf-8', 'ascii')
                     )
                 );
                 if (strstr($fws, $themews)) {
@@ -233,4 +238,19 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         return parent::get_generated_image_for_id($id);
     }
 
+    /**
+     * Returns the page heading menu.
+     *
+     * @return string HTML.
+     * @since Moodle 2.5.1 2.6
+     */
+    public function page_heading_menu() {
+        $additionalmenu = '';
+        if ($this->page->course->id != SITEID) {
+            if ($this->page->user_allowed_editing()) {
+                $additionalmenu = $this->render(new teacherdashboard_menu($this->page->course));
+            }
+        }
+        return $this->page->headingmenu . $additionalmenu;
+    }
 }

@@ -79,6 +79,14 @@ class settings extends \theme_clboost\local\settings {
             static::get_string('randomimage', 'theme_vetagro'),
             static::get_string('randomimage_desc', 'theme_vetagro'),
             utils::RANDOM_IMAGE_FILE_AREA);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        $setting = new admin_setting_configstoredfile('theme_vetagro/frontpageimage',
+            static::get_string('frontpageimage', 'theme_vetagro'),
+            static::get_string('frontpageimage_desc', 'theme_vetagro'),
+            utils::FRONTPAGE_IMAGE_FILE_AREA);
+        $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
 
         $settings->add($page);

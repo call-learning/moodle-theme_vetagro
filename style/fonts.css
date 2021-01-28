@@ -14,7 +14,7 @@
     src: url([[font:theme|Poppins-SemiBold.eot]]);
     src: url([[font:theme|Poppins-SemiBold.eot]]) format('embedded-opentype'),
     url([[font:theme|Poppins-SemiBold.woff2]]) format('woff2'),
-    url([[font:theme|Poppins-Regular.woff]]) format('woff'),
+    url([[font:theme|Poppins-SemiBold.woff]]) format('woff'),
     url([[font:theme|Poppins-SemiBold.ttf]]) format('truetype');
     font-weight: bold;
     font-style: normal;
@@ -25,7 +25,7 @@
     src: url([[font:theme|Poppins-Bold.eot]]);
     src: url([[font:theme|Poppins-Bold.eot]]) format('embedded-opentype'),
     url([[font:theme|Poppins-Bold.woff2]]) format('woff2'),
-    url([[font:theme|Poppins-Regular.woff]]) format('woff'),
+    url([[font:theme|Poppins-Bold.woff]]) format('woff'),
     url([[font:theme|Poppins-Bold.ttf]]) format('truetype');
     font-weight: 700;
     font-style: normal;
@@ -48,7 +48,35 @@
     src: url([[font:theme|OpenSans-Bold.eot]]) format('embedded-opentype'),
     url([[font:theme|OpenSans-Bold.woff2]]) format('woff2'),
     url([[font:theme|OpenSans-Bold.woff]]) format('woff'),
-    url([[font:theme|OpenSans-Bold.ttf]]) format('truetype'),;
+    url([[font:theme|OpenSans-Bold.ttf]]) format('truetype');
     font-weight: bold;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Marianne';
+    src: url([[font:theme|Marianne-Regular.woff2]]);
+    src: url([[font:theme|Marianne-Regular.woff2]]) format('woff2'),
+    url([[font:theme|Marianne-Regular.woff]]) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Marianne';
+    src: url([[font:theme|Marianne-Bold.woff2]]);
+    src: url([[font:theme|Marianne-Bold.woff2]]) format('woff2'),
+    url([[font:theme|Marianne-Bold.woff]]) format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Marianne';
+    src: url([[font:theme|Marianne-ExtraBold.woff2]]);
+    src: url([[font:theme|Marianne-ExtraBold.woff2]]) format('woff2'),
+    url([[font:theme|Marianne-ExtraBold.woff]]) format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+

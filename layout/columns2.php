@@ -13,11 +13,10 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Theme plugin version definition.
  *
- * This defines a frontpage that will allow adding block to the main content area.
+ * Same as theme boost
  *
  * @package   theme_vetagro
  * @copyright 2020 - CALL Learning - Laurent David <laurent@call-learning>
@@ -26,16 +25,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$templatecontext = \theme_clboost\local\utils::prepare_standard_page($OUTPUT, $PAGE);
+$templatecontext = \theme_clboost\local\utils::prepare_standard_page($OUTPUT, $PAGE, 'side-pre');
 $templatecontext['sitename'] = format_string(
     $SITE->fullname,
     true,
     ['context' => context_course::instance(SITEID), "escape" => false]
 );
-$templatecontext['pageheader'] = format_text($SITE->summary, FORMAT_HTML);
-// Bit of a hack here: we prevent the index page from displaying anything else than we decided to in the template.
-// It would usually display the course list, news, and so on (see @core_renderer::frontpage).
-$CFG->frontpage = '';
-$CFG->frontpageloggedin = '';
+echo $OUTPUT->render_from_template('theme_clboost/columns2', $templatecontext);
 
-echo $OUTPUT->render_from_template('theme_clboost/frontpage', $templatecontext);

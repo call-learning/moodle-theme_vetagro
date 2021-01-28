@@ -18,23 +18,25 @@
         .logo img,
         .rf-logo {
             max-height: 78px;
+            padding: 5px;
         }
 
         @include media-breakpoint-down(sm) {
-            .logo img {
-                max-width: 35px;
-            }
+            .logo img,
             .rf-logo {
-                width: 100px;
+                max-height: 40px;
+                padding: initial;
             }
         }
     }
 }
 
 #page {
-    margin-top: $navbar-height;
+    margin-top: auto;
+    padding-top: $navbar-height;
 }
 
 #page-login-index #page {
     margin-top: auto;
+    padding-top: initial;
 }
