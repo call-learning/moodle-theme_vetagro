@@ -35,6 +35,8 @@ $string['addresses_desc'] = 'Addresses for Footer.  <br/>Structure:
 $string['address'] = 'Address';
 $string['configtitle'] = 'Vetagro Theme';
 $string['cookiesrgpd'] = 'Cookies and data management';
+$string['isvetagrotice'] = 'Vetagrotice Site?';
+$string['isvetagrotice_desc'] = 'Vetagrotice Site? Allows some specifics display for Vetagrotice (page de login...)';
 $string['mentionlegales'] = 'Legal';
 $string['nobootswatch'] = 'None';
 $string['pluginname'] = 'Vetagro';
@@ -64,4 +66,5 @@ App help|https://someurl.xyz/help
 My grades|https://someurl.xyz/local/mygrades/index.php|embedded|en
 Mis calificaciones|https://someurl.xyz/local/mygrades/index.php|embedded|es
 </pre>';
-
+$string['vetagrotice_idplogin'] = 'Etudiants, enseignants, personnels de VetAgro Sup';
+$string['vetagrotice_manuallogin'] = 'Autres utilisateurs';

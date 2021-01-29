@@ -57,6 +57,7 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         $additionalinfo->addresses = utils::convert_addresses_config();
         $additionalinfo->membership = utils::convert_membership_config($this->page);
         $additionalinfo->randomimageurl = utils::get_random_image_url($this->page->theme->name);
+        $additionalinfo->isvetagrotice = get_config('theme_vetagro', 'isvetagrotice');
         return $additionalinfo;
     }
 
@@ -251,6 +252,6 @@ class core_renderer extends \theme_clboost\output\core_renderer {
                 $additionalmenu = $this->render(new teacherdashboard_menu($this->page->course));
             }
         }
-        return $this->page->headingmenu . $additionalmenu;
+        return $additionalmenu . $this->page->headingmenu ;
     }
 }

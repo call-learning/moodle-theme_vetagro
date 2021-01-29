@@ -51,6 +51,13 @@ class settings extends \theme_clboost\local\settings {
         $page = new admin_settingpage('additionalinfo',
             static::get_string('additionalinfo', 'theme_vetagro'));
 
+        $setting = new \admin_setting_configcheckbox('theme_vetagro/isvetagrotice',
+            static::get_string('isvetagrotice', 'theme_vetagro'),
+            static::get_string('isvetagrotice_desc', 'theme_vetagro'),
+            false,
+            PARAM_BOOL);
+        $page->add($setting);
+
         $setting = new admin_setting_configtextarea('theme_vetagro/addresses',
             static::get_string('addresses', 'theme_vetagro'),
             static::get_string('addresses_desc', 'theme_vetagro'),

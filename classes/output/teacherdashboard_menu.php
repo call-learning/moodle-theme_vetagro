@@ -85,8 +85,8 @@ class teacherdashboard_menu implements renderable, templatable {
             new moodle_url(''),
             '',
             null,
-            array('class' => 'btn btn-outline-primary'),
-            new pix_icon('t/dropdown', get_string('teacherdashboardmenu', 'theme_vetagro'))
+            array('class' => 'btn btn-secondary'),
+            new pix_icon('teacherdb', get_string('teacherdashboardmenu', 'theme_vetagro'), 'theme_vetagro')
         );
         $data->action = $action->export_for_template($output);
 

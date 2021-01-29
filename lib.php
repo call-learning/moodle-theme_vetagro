@@ -78,3 +78,13 @@ function theme_vetagro_get_extra_scss($theme) {
     }';
     return $extracss . $fpimagedef;
 }
+
+/**
+ * Map icons for font-awesome themes.
+ */
+function theme_vetagro_get_fontawesome_icon_map() {
+    return [
+        'theme_vetagro:teacherdb' => 'fa-cogs'
+    ];
+}
+
