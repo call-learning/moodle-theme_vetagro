@@ -63,7 +63,7 @@ function theme_vetagro_get_extra_scss($theme) {
     #page-site-index {
         .fp-header {';
     foreach ($frontpageimagesurls as $type => $fpdef) {
-        $bgdef = "background-image: url($fpdef);";
+        $bgdef = "background-image: linear-gradient(to bottom, rgba(\$primary, 0.52), rgba(\$primary, 0.73)), url($fpdef);";
         if ($type != utils::IMAGE_SIZE_TYPE_NORMAL) {
             $fpimagedef .= " @include media-breakpoint-up($type) {
                 $bgdef

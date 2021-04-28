@@ -159,8 +159,12 @@ class core_renderer extends \theme_clboost\output\core_renderer {
             list($urltext, $url) = \local_resourcelibrary\locallib\utils::get_catalog_url();
             $custommenuitems .= "\n{$urltext}|{$url}";
         }
+        if (get_config('theme_vetagro','usefullinks')) {
+            $custommenuitems .= "\n". get_config('theme_vetagro','usefullinks');
+        }
 
         $custommenu = new custom_menu($custommenuitems, current_language());
+
         $langs = get_string_manager()->get_list_of_translations();
         $haslangmenu = $this->lang_menu() != '';
 

@@ -85,7 +85,9 @@ class settings extends \theme_clboost\local\settings {
         $setting = new admin_setting_configstoredfile('theme_vetagro/randomimage',
             static::get_string('randomimage', 'theme_vetagro'),
             static::get_string('randomimage_desc', 'theme_vetagro'),
-            utils::RANDOM_IMAGE_FILE_AREA);
+            utils::RANDOM_IMAGE_FILE_AREA,
+            0,
+            ['maxfiles' => -1]);
         $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
 
