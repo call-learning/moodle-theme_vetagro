@@ -24,11 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 $string['additionalinfo'] = 'Information additionnelle';
-$string['address'] = 'Addresse';
+$string['address'] = 'Adresse';
 $string['choosereadme'] =
     'Un thème basé sur Boost et CLBoost.';
-$string['addresses'] = 'Addresses pour le bas de page';
-$string['addresses_desc'] = 'Addresses pour le bas de page.  <br/>Structure:
+$string['addresses'] = 'Adresses pour le bas de page';
+$string['addresses_desc'] = 'Adresses pour le bas de page.  <br/>Structure:
      <ul>
      <li>addresslabel|address|tel</li>
      <li>Exemple: Campus agronomique|89 Avenue de l’Europe, 63370 Lempdes|04 73 98 13 13</li>
@@ -55,7 +55,7 @@ $string['randomimage'] = 'Image tirée au hasard';
 $string['randomimage_desc'] = 'Une image tirée au hasard parmi la liste qui peut être utilisée dans le thème';
 $string['frontpageimage'] = 'Image de la page de garde';
 $string['frontpageimage_desc'] = 'Image de la page de garde pour the theme';
-$string['tel'] = 'Téléphonne';
+$string['tel'] = 'Téléphone';
 $string['totop'] = 'En haut';
 $string['teacherdashboardmenu'] = 'Menu enseignant';
 $string['usefullinks'] = 'Liens utiles';
