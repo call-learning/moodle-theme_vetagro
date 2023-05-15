@@ -1,20 +1,37 @@
 // Front page
+.navbar-brand .rf-logo {
+    display: none;
+}
 #page-site-index {
     .fp-header {
         background-size: cover;
         min-height: 380px;
-        color: white;
+        color: $white;
         display: flex;
-        .container {
+        .sitesummarycontainer {
+            max-width: $frontpage-content-maxwidth;
+            margin-left: auto;
+            margin-right: auto;
             align-self: center;
             h3 {
+                color: $white;
                 font-size: 2.5em;
+                line-height: 1.5em;
                 margin-bottom: 1em;
             }
         }
     }
     .card {
         border: none;
+    }
+    .block-what-is-imtpn {
+        max-width: $frontpage-content-maxwidth;
+        margin: 0 auto;
+    }
+
+    div[role="main"] {
+        max-width: $frontpage-content-maxwidth;
+        margin: 0 auto;
     }
 
     .block {
@@ -51,6 +68,25 @@
                 max-height: 81px;
             }
         }
+    }
+    .navbar {
+        box-shadow: none;
+        border: 0;
+        height: $navbar-height-frontpage;
+        #usernavigation {
+            max-height: 45px;
+            align-self: center;
+        }
+    }
+
+    [data-region=right-hand-drawer].drawer {
+        top: $navbar-height-frontpage;
+    }
+    #page {
+        margin-top: $navbar-height-frontpage;
+    }
+    .navbar-brand .rf-logo {
+        display: block;
     }
 }
 

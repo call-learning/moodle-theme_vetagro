@@ -4,18 +4,20 @@
     a:hover,
     a:active,
     a:visited {
-        color: $gray-600;
+        color: $gray-300;
         text-decoration: none;
     }
 
     a:focus {
-        color: $gray-900;
+        color: $white;
     }
 
     h3,
     .h3 {
         font-size: 1.5rem;
         font-weight: bold;
+        line-height: 2.5rem;
+        color: $white;
     }
 
     .infos-footer {

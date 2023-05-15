@@ -17,8 +17,7 @@
     nav.navbar {
         .logo img,
         .rf-logo {
-            max-height: 78px;
-            padding: 5px;
+            max-height: calc(#{$navbar-height} - 10px);
         }
 
         @include media-breakpoint-down(sm) {
@@ -31,12 +30,47 @@
     }
 }
 
-#page {
-    margin-top: auto;
-    padding-top: $navbar-height;
-}
-
 #page-login-index #page {
     margin-top: auto;
     padding-top: initial;
+}
+
+.course-content-maxwidth {
+    max-width: $course-content-maxwidth;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+#page.drawers .main-inner {
+    max-width: $course-content-maxwidth;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+#page.drawers {
+    padding-left: 0;
+    padding-right: 0;
+}
+.activity-item:not(.activityinline) {
+    border: 0;
+}
+body .simplesearchform .fa-search {
+    color: $white;
+}
+
+.page-context-header {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+body:not(.path-mod) {
+    .page-header-headings .h2 {
+        font-size: 50px;
+    }
+    .page-header-headings .h2:after {
+        content: "";
+        background: $primary;
+        height: 3px;
+        display: block;
+        margin-top: 0.5rem;
+        width: 14%;
+    }
 }
