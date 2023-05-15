@@ -55,6 +55,7 @@ $font-family-base:            $font-family-sans-serif !default;
 $headings-font-family: "Poppins", sans-serif !default;
 $headings-font-weight: 600 !default;
 $headings-line-height: 1.1 !default;
+$headings-color: $primary !default;
 
 // Buttons
 
@@ -75,6 +76,10 @@ $nav-highlight-font-weight: 600 !default;
 $drawer-width: 285px !default;
 $drawer-width-semi-expanded: 94px !default;
 
+$border-radius:               1rem;
+$border-radius-lg:            1.5rem;
+$border-radius-sm:            .5rem;
+
 // Pagination
 
 $pagination-hover-color: $white !default;
@@ -85,8 +90,11 @@ $pagination-hover-border-color: $primary !default;
 
 $nav-drawer-width: 285px;
 $drawer-toggle-width: 50px;
-$navbar-height: 94px;
-
+$navbar-height: 60px;
+$navbar-height-frontpage: 94px;
+$course-content-maxwidth: 1440px;
+$frontpage-content-maxwidth: 954px;
+$enable-rounded: true;
 
 .btn,
 button {
@@ -94,7 +102,3 @@ button {
     font-weight: $button-font-weight;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-    font-weight: $nav-highlight-font-weight;
-}

@@ -34,12 +34,12 @@
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
 
-<div id="page-wrapper">
+<div id="page-wrapper" class="login-bg-wrapper" >
 
     {{{ output.standard_top_of_body_html }}}
 
-    <div id="page" class="container-fluid">
-        <div id="page-content" class="row">
+    <div id="page" class="container-fluid px-0 login-bg-wrapper" style="background-image: url({{additionalinfo.randomimageurl}});">
+        <div id="page-content" class="row no-gutters">
             <div id="region-main-box" class="col-12 d-flex">
                 <section id="region-main" class="col-12 d-flex flex-column p-0" aria-label="{{#str}}content{{/str}}">
                     {{{ output.course_content_header }}}

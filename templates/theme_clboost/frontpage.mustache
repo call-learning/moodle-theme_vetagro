@@ -58,18 +58,16 @@
     {{{ output.standard_top_of_body_html }}}
 
     {{> theme_boost/navbar }}
-    {{> theme_boost/nav-drawer }}
 
-    <div id="page" class="container-fluid d-print-block">
+    <div id="page" class="container-fluid d-print-block px-0">
         {{{ output.context_header_settings_menu }}}
 
-        <div id="page-content" class="row pb-3 d-print-block">
+        <div id="page-content" class="row no-gutters pb-3 d-print-block">
             <div id="region-main-box" class="col-12">
                 <div class="container-fluid fp-header">
-                    <div class="container">
+                    <div class="sitesummarycontainer py-5">
                         {{{ pageheader }}}
                     </div>
-
                 </div>
                 {{#hasregionmainsettingsmenu}}
                 <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
@@ -95,8 +93,11 @@
     {{{ output.standard_after_main_region_html }}}
     {{> theme_boost/footer }}
 </div>
-
 </body>
 </html>
-
-{{> theme_clboost/twostatedrawer }}
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function(Loader) {
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
