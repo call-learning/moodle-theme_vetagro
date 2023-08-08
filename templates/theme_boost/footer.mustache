@@ -18,14 +18,16 @@
     Page footer.
 }}
 <div id="goto-top-link">
-    {{! go to top is sticky to footer so needs to be sibling }}
-    <a class="btn btn-outline-primary" role="button" href="#">
-        {{#pix}} i/up, core, {{#str}} totop, theme_vetagro {{/str}}{{/pix}}
-    </a>
+    <div class="course-content-maxwidth d-flex justify-content-end">
+        {{! go to top is sticky to footer so needs to be sibling }}
+        <a class="btn btn-outline-primary icon-no-margin" role="button" href="#">
+            {{#pix}} i/up, core, {{#str}} totop, theme_vetagro {{/str}}{{/pix}}
+        </a>
+    </div>
 </div>
 <footer id="page-footer" class="py-3 text-white bg-dark pt-5">
     <div class="container-fluid infos-footer">
-        <div class="row-fluid justify-content-center">
+        <div class="row justify-content-center">
             <div class="col col-lg-2 useful-links">
                 <h3>{{#str}}usefullinks, theme_vetagro{{/str}}</h3>
                 {{# output.custom_menu_flat }}
@@ -59,6 +61,8 @@
                     <a href="{{link}}">{{label}}</a>
                 </div>
             {{/ additionalinfo.otherlinks }}
+                        <div class="tool_usertours-resettourcontainer">
+            </div>
             {{{ output.standard_end_of_body_html }}}
         </div>
     </div>

@@ -29,3 +29,4 @@ defined('MOODLE_INTERNAL') || die();
 require_once(__DIR__ . '/lib.php');
 
 config::setup_config($THEME); // Parent is clboost, so no need to add it here.
+$THEME->iconsystem = '\\theme_vetagro\\output\\icon_system_fontawesome';

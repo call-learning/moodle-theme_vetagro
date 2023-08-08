@@ -1,11 +1,30 @@
-#page-login-index {
-    div[role='main'] {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        .main-login-content {
-            flex-grow: 1;
-        }
-    }
 
+.pagelayout-login #page {
+    margin-top: 0;
+    .btn {
+        border-radius: 18px;
+        font-size: 17px;
+    }
+    .form-control {
+        border-radius: 3px;
+        font-size: 17px;
+    }
+    .signupform {
+        background-color: $white;
+        padding: 5rem;
+        margin: 3rem;
+        max-width: 700px;
+    }
+}
+.pagelayout-login #page.login-bg-wrapper {
+    background-color: $black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+}
+
+@include media-breakpoint-up(xl) {
+    .pagelayout-login .loginformcard {
+        max-width: 40vw;
+    }
 }

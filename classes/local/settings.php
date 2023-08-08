@@ -46,7 +46,7 @@ class settings extends \theme_clboost\local\settings {
      *
      * @param admin_settingpage $settings
      */
-    protected static function additional_settings(admin_settingpage &$settings) {
+    protected static function additional_settings(admin_settingpage &$settings, $currentthemename = 'clboost') {
         // Advanced settings.
         $page = new admin_settingpage('additionalinfo',
             static::get_string('additionalinfo', 'theme_vetagro'));

@@ -243,19 +243,4 @@ class core_renderer extends \theme_clboost\output\core_renderer {
         return parent::get_generated_image_for_id($id);
     }
 
-    /**
-     * Returns the page heading menu.
-     *
-     * @return string HTML.
-     * @since Moodle 2.5.1 2.6
-     */
-    public function page_heading_menu() {
-        $additionalmenu = '';
-        if ($this->page->course->id != SITEID) {
-            if ($this->page->user_allowed_editing()) {
-                $additionalmenu = $this->render(new teacherdashboard_menu($this->page->course));
-            }
-        }
-        return $additionalmenu . $this->page->headingmenu ;
-    }
 }
