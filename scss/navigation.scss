@@ -35,13 +35,16 @@ body.notloggedin .navbar .nav-main-content {
 }
 
 .navbar.fixed-top {
-    padding-top: 0;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
     padding-bottom: 0;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
+    padding-top: 0;
 }
 
 .navbar.fixed-top .navbar-brand .logo {
     max-height: $navbar-height;
+}
+#page-site-index .navbar.fixed-top .navbar-brand .logo {
+    max-height: $navbar-height-frontpage;
 }
 
 .simplesearchform {
