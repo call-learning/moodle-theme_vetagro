@@ -74,3 +74,13 @@ body:not(.path-mod) {
         width: 14%;
     }
 }
+
+body .simplesearchform .fa-search {
+    color: $primary;
+}
+
+#searchform-navbar  {
+    .input-group {
+        margin-top: .8em;
+    }
+}
